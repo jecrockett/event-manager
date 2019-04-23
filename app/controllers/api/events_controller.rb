@@ -9,7 +9,7 @@ class Api::EventsController < ApiController
     respond_with Event.find(params[:id])
   end
 
-  def created
+  def create
     respond_with :api, Event.create(event_params)
   end
 
