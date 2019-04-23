@@ -7,6 +7,7 @@ class EventList extends React.Component {
     return (
       <section className='eventList'>
         <h2>Events</h2>
+        <Link to='/events/new'>New Event</Link>
         <ul>{this.renderEvents()}</ul>
       </section>
     )
