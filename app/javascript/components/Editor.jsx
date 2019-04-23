@@ -7,6 +7,8 @@ import Header from './Header';
 import EventList from './EventList';
 import Event from './Event';
 import EventForm from './EventForm';
+import { handleAjaxError } from '../helpers/helpers';
+import { success } from '../helpers/notifications';
 
 
 class Editor extends React.Component {
@@ -25,14 +27,14 @@ class Editor extends React.Component {
     axios
       .get('/api/events.json')
       .then(response => this.setState({ events: response.data }))
-      .catch(error => console.log(error));
+      .catch(handleAjaxError);
   }
 
   addEvent(newEvent) {
     axios
       .post('/api/events.json', newEvent)
       .then((response) => {
-        alert('Event added');
+        success('Event added');
         const savedEvent = response.data;
         this.setState(prevState => ({
           events: [...prevState.events, savedEvent],
@@ -40,9 +42,7 @@ class Editor extends React.Component {
         const { history } = this.props;
         history.push(`/events/${savedEvent.id}`);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch(handleAjaxError);
   }
 
   deleteEvent(eventId) {
@@ -52,7 +52,7 @@ class Editor extends React.Component {
         .delete(`/api/events/${eventId}.json`)
         .then((response) => {
           if (response.status === 204) {
-            alert('Event deleted');
+            success('Event deleted');
             const { history } = this.props;
             history.push('/events');
 
