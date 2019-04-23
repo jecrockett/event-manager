@@ -44,11 +44,11 @@ const Event = ({ event }) => (
 );
 
 Event.propTypes = {
-  event: PropTypes.shape();
+  event: PropTypes.shape(),
 };
 
 Event.defaultProps = {
-  event: undefined;
+  event: undefined,
 };
 
 export default Event;
