@@ -14,7 +14,7 @@ class Api::EventsController < ApiController
   end
 
   def destroy
-    respond_with Event.destroy(params[:idea])
+    respond_with Event.destroy(params[:id])
   end
 
   def update
